@@ -9,8 +9,14 @@ import { Post } from '../post.model'
 export class PostCreateComponent{
   enteredTitle="";
   enteredContent="";
+ getErrorMessage :string= "please fill the fields in red";
+
   @Output() postCreated= new EventEmitter<Post>();
+
   onAddPost(form: NgForm){
+    if(form.invalid){
+      return;
+    }
     const post: Post={
       title: form.value.title,
       content: form.value.content,
